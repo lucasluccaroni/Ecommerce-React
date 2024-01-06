@@ -1,0 +1,45 @@
+.navbar{
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: solid 1px;
+}
+
+.links{
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.botones{
+    height: 50px;
+    font-size: 25px;
+    background-color: lightgrey;
+    border: solid 3px;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    
+}
+.botones:hover {
+    transform: scale(1.05);
+}
+
+.title{
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+    font-size: 50px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    border: solid 4px;
+
+}

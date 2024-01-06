@@ -1,9 +1,3 @@
-# React + Vite
+El gif requerido para la 2da Entrega del proyecto final se encuentra dentro de la carpeta "public", con nombre "2da-entrega-react-Luccaroni".
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# 3era-entrega-proyecto-final
+Saludos.

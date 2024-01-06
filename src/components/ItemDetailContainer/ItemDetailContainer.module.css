@@ -1,0 +1,11 @@
+.cardContainer{
+    height: 100vw;
+    background-color: lightcyan;
+    display: flex;
+    justify-content: center;
+}
+
+.loading{
+    width: fit-content;
+    font-style: italic;
+}

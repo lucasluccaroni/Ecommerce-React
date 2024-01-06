@@ -1,0 +1,16 @@
+.contadorContainer{
+    border: solid black;
+    width: fit-content;
+    background-color: white;
+}
+
+
+.count{
+    display: flex;
+    justify-content: center;
+}
+
+.boton{
+    font-size: large;
+    margin: 3px;
+}
