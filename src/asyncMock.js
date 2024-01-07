@@ -23,7 +23,7 @@ const products = [
         price: 900,
         category: 'programs',
         img:"../public/images/microsoft-oceans.jpg",
-        stock: 0,
+        stock: 10,
         description:'Microsoft Oceans Edición 1995'
     }
 ]

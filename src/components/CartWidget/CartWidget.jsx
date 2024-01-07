@@ -1,12 +1,18 @@
 import logo from "../../../public/images/shopping-cart.png"
 import estilos from "./CartWidget.module.css"
+import { useCart } from "../../context/CartContext"
+import { Link } from "react-router-dom"
 
 const CartWidget = () =>{
+
+    const {totalQuantity} = useCart()
+
     return(
-        <div className={estilos.cart}>
-            <img src={logo} className={estilos.image} />
-            0
-        </div>
+            <Link to="/cart" className={estilos.cartWidget} >
+                <img src={logo} className={estilos.image} />
+                {totalQuantity}
+            </Link>
+
     )
 }
 

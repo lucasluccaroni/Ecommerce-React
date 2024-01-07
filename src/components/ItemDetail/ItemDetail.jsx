@@ -1,15 +1,15 @@
 import ItemCount from "../ItemCount/ItemCount"
 import estilos from "./ItemDetail.module.css"
-import { useState } from "react"
+import { useCart } from "../../context/CartContext"
 
 const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
-    const [quantity, setQuantity] = useState(0)
 
-    const handleOnAdd = (count) => {
-        const objProductToAdd = {id, name, price, count}
-        console.log(objProductToAdd)
-        console.log(`agregue al carrito: ${count}`)
-        setQuantity(count)
+    const {addItem, isInCart} = useCart();
+
+    const handleOnAdd = (quantity) => {
+        const objProductToAdd = {id, name, price, quantity}
+        addItem(objProductToAdd)
+        console.log(`agregue al carrito: ${quantity}`)
     }
 
 
@@ -23,7 +23,7 @@ const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
 
         <footer>
             {
-                quantity === 0 ? (
+                !isInCart(id) ? (
                     <ItemCount onAdd={handleOnAdd} stock={stock}/>
                 ) : (
                     <button>Finalizar Compra</button>
