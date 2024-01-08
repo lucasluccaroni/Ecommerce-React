@@ -1,0 +1,16 @@
+.contenedor{
+    background-color: lightblue;
+    border: solid rgb(17, 172, 184);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button{
+    width: 50px;
+    height: 50px;
+    border: solid black 3px;
+    font-weight: bolder;
+    font-size: large;
+    cursor: pointer;
+}
