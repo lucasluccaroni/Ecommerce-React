@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react"
+import { useNotification } from "../notification/NotificationService"
 
 //CREACION DE CONTEXT
 export const CartContext = createContext({
@@ -9,6 +10,8 @@ export const CartContext = createContext({
 
 
 export const CartProvider = ({children}) =>{
+    const {showNotification} = useNotification()
+
     
     const [cart, setCart] = useState([])
     console.log(cart)
@@ -16,9 +19,9 @@ export const CartProvider = ({children}) =>{
     const addItem = (productToAdd) => {
 
         if(!isInCart(productToAdd.id)) {
-        setCart(prev => [...prev , productToAdd])
+            setCart(prev => [...prev , productToAdd])
         }else(
-        console.error("el producto ya esta agregado")
+            showNotification("error","el producto ya esta agregado")
         )
     }
 
@@ -29,6 +32,7 @@ export const CartProvider = ({children}) =>{
     const removeItem = (productId) =>{
         const cartUpdaed = cart.filter(prod => prod.id !== productId)
         setCart(cartUpdaed)
+        showNotification("error", "Producto eliminado")
     }
 
     // CANTIDAD TOTAL DE LA COMPRA CARRITO
@@ -58,6 +62,7 @@ export const CartProvider = ({children}) =>{
     //LIMPIAR CARRITO
     const clearCart = () =>{
         setCart([])
+        showNotification("info", "El carrito ha sido limpiado con exito.")
     }
 
 

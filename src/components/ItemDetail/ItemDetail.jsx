@@ -8,10 +8,12 @@ const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
     const {addItem, isInCart} = useCart();
     const {showNotification} = useNotification()
 
+
+
     const handleOnAdd = (quantity) => {
         const objProductToAdd = {id, name, price, quantity}
         addItem(objProductToAdd)
-        showNotification( "success" ,`Se agregó correctamente: ${quantity} ${name}.`)
+        showNotification( "success" ,`Se agregó correctamente: ${quantity}  "${name}".`)
     }
 
 

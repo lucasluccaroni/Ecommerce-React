@@ -3,10 +3,12 @@ import { getProducts, getProductsByCategory } from "../../asyncMock"
 import ItemList from "../ItemList/ItemList"
 import { useParams } from "react-router-dom"
 import estilos from "./ItemListContainer.module.css"
+import { useNotification } from "../../notification/NotificationService"
 
 const ItemListContainer = ({greeting}) =>{
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+    const {showNotification} = useNotification()
 
     const {categoryId} = useParams()
 
@@ -14,7 +16,7 @@ const ItemListContainer = ({greeting}) =>{
         setTimeout(()=>{
             if(a.length == 0){
                 console.log(products);
-                return alert("No hay productos en esta categoria.")
+                showNotification("info", "No hay productos en esta categoria.")
             }    
         }, 2000)
     }
@@ -30,6 +32,7 @@ const ItemListContainer = ({greeting}) =>{
         })
         .catch(error => {
             console.log(error);
+            showNotification("error", "Hubo un error, intente mas tarde.")
         })
         .finally(() =>{
             setLoading(false)

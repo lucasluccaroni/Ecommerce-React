@@ -4,6 +4,7 @@ import estilos from "./CartItem.module.css"
 
 const CartItem = ({name, price, quantity, id}) =>{
     const {removeItem} = useCart()
+    
 
 
 

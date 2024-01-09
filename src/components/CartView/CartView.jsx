@@ -1,7 +1,7 @@
 import { useCart } from "../../context/CartContext"
 import { Link } from "react-router-dom"
-import CartItem from "../CartItem/CartItem"
 import CartList from "../CartList/CartList"
+import estilos from "./CartView.module.css"
 
 const CartView = () => {
     const {cart, totalQuantity, total, clearCart} = useCart()
@@ -9,8 +9,8 @@ const CartView = () => {
     if(totalQuantity === 0){
         return(
             <div>
-                <h1>No hay items en el carrito</h1>
-                <Link to={"/"}> Productos</Link>
+                <h1>No hay items en el carrito.</h1>
+                <Link to={"/"} className={estilos.botones} > Productos</Link>
             </div>
         )
     }
@@ -19,9 +19,11 @@ const CartView = () => {
         <div>
             <h1>CARRITO</h1>
             <CartList cart={cart} />
-            <h3>Total: {total} </h3>
-            <button onClick={clearCart} > Limpiar Carrito</button>
-            <Link to="/checkout"> Checkout </Link>
+            <div className={estilos.finalDelCarrito} > 
+                <button onClick={clearCart} className={estilos.botones} > Limpiar Carrito</button>
+                <Link to="/checkout" className={estilos.botones} > Checkout </Link>
+                <h1>Total: $ {total} </h1>
+            </div>
         </div>
     )
 }
