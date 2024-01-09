@@ -1,15 +1,17 @@
 import ItemCount from "../ItemCount/ItemCount"
 import estilos from "./ItemDetail.module.css"
 import { useCart } from "../../context/CartContext"
+import { useNotification } from "../../notification/NotificationService"
 
 const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
 
     const {addItem, isInCart} = useCart();
+    const {showNotification} = useNotification()
 
     const handleOnAdd = (quantity) => {
         const objProductToAdd = {id, name, price, quantity}
         addItem(objProductToAdd)
-        console.log(`agregue al carrito: ${quantity}`)
+        showNotification( "success" ,`Se agregó correctamente: ${quantity} ${name}.`)
     }
 
 
