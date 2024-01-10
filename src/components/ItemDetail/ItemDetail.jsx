@@ -2,6 +2,7 @@ import ItemCount from "../ItemCount/ItemCount"
 import estilos from "./ItemDetail.module.css"
 import { useCart } from "../../context/CartContext"
 import { useNotification } from "../../notification/NotificationService"
+import { Link } from "react-router-dom"
 
 const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
 
@@ -30,7 +31,7 @@ const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
                 !isInCart(id) ? (
                     <ItemCount onAdd={handleOnAdd} stock={stock}/>
                 ) : (
-                    <button>Finalizar Compra</button>
+                    <Link to="/cart" className={estilos.botones} >Finalizar Compra</Link>
                 )
             }
         </footer>

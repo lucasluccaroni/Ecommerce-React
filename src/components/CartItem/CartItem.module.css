@@ -14,3 +14,6 @@
     font-size: large;
     cursor: pointer;
 }
+.button:hover {
+    transform: scale(1.05);
+}
