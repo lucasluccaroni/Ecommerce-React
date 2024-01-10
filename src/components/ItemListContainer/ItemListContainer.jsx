@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { getProducts, getProductsByCategory } from "../../asyncMock"
 import ItemList from "../ItemList/ItemList"
 import { useParams } from "react-router-dom"
 import estilos from "./ItemListContainer.module.css"
 import { useNotification } from "../../notification/NotificationService"
+import { getDocs, collection, query, where } from "firebase/firestore"
+import { db } from "../../services/firebase/firebaseConfig"
 
 const ItemListContainer = ({greeting}) =>{
     const [products, setProducts] = useState([])
@@ -15,7 +16,6 @@ const ItemListContainer = ({greeting}) =>{
     const check = (a) =>{
         setTimeout(()=>{
             if(a.length == 0){
-                console.log(products);
                 showNotification("info", "No hay productos en esta categoria.")
             }    
         }, 2000)
@@ -24,20 +24,44 @@ const ItemListContainer = ({greeting}) =>{
 
     useEffect(() =>{
         setLoading(true)
-        const ascynFunction = categoryId ? getProductsByCategory : getProducts
-        ascynFunction(categoryId)
-        .then(response =>{
-            setProducts(response)
-            check(response)
-        })
-        .catch(error => {
-            console.log(error);
-            showNotification("error", "Hubo un error, intente mas tarde.")
-        })
-        .finally(() =>{
-            setLoading(false)
-        })
-    },[categoryId])
+
+        //Condicional para que se filtren los productos
+        const collectionRef = categoryId
+            ? query(collection(db, "products"), where("category", "==", categoryId))
+            : collection(db, "products")
+
+        getDocs(collectionRef)
+            .then(querySnapshot =>{
+                const productsAdapted = querySnapshot.docs.map(doc => {
+                    const fields = doc.data()   
+                    return {id: doc.id, ...fields } 
+                })
+                setProducts(productsAdapted)
+                check(productsAdapted)
+            })
+            .catch(error => {
+                console.log(error);
+                showNotification("error", "Hubo un error, intente mas tarde.")
+            })
+            .finally(() =>{
+                setLoading(false)
+            })
+
+        // setLoading(true)
+        // const ascynFunction = categoryId ? getProductsByCategory : getProducts
+        // ascynFunction(categoryId)
+        // .then(response =>{
+        //     setProducts(response)
+        //     check(response)
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        //     showNotification("error", "Hubo un error, intente mas tarde.")
+        // })
+        // .finally(() =>{
+        //     setLoading(false)
+        // })
+    }, [categoryId] )
 
 
     if(loading){
