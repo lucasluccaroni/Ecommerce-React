@@ -2,10 +2,7 @@ import estilos from "./NotificationService.module.css"
 import { createContext, useState, useContext, useEffect } from "react"
 
 
-
-
 const Notification = ({notificationData}) =>{
-
     const [notificationStyle, setNotificationStyle] = useState(estilos.notificationSuccess)
 
 
@@ -33,7 +30,6 @@ const Notification = ({notificationData}) =>{
 
 
 
-
 //CREACION DEL CONTEXT
 const NotificationContext = createContext()
 
@@ -41,16 +37,14 @@ const NotificationContext = createContext()
 
 //COMPONENTE PARA COMPARTIR LA FUNCIONABILIDAD
 export const NotificationProvider = ({children}) =>{
+
     //CREACION DE LA NOTIFICACION
     const [notificationData, setNotificationData] = useState(
         {
             type: "success",
             text: ""
         }
-        )
-
-
-
+    )
 
     //CREACION DE FUNCION PARA SETEAR EL ESTADO
     const showNotification = (type, text) =>{
@@ -61,15 +55,8 @@ export const NotificationProvider = ({children}) =>{
         setTimeout(()=>{
 
             setNotificationData(prev => ({...prev, text: ""}))
-        }, 2500)
+        }, 3000)
     }
-
-    
-
-    
-
-
-
 
 
     return(
@@ -79,7 +66,6 @@ export const NotificationProvider = ({children}) =>{
         </NotificationContext.Provider>
     )
 }
-
 
 
 //Custom hook para compartir la notificacion

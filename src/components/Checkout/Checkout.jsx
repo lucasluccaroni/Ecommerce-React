@@ -4,6 +4,8 @@ import CheckoutForm from "../CheckoutForm/CheckoutForm"
 import { Timestamp, addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore"
 import { db } from "../../services/firebase/firebaseConfig"
 import { useNotification } from "../../notification/NotificationService"
+import { Link } from "react-router-dom"
+import estilos from "./Checkout.module.css"
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
@@ -13,18 +15,20 @@ const Checkout = () => {
 
 
     const createOrder = async ({name, phone, email}) =>{
-        setLoading(true)
-
+        
         try{
+            setLoading(true)
+
             const objOrder = {
                 buyer: {
-                    name, phone, email
+                    name,
+                    phone,
+                    email,
                 },
                 items: cart,
-                total: total,
+                total,
                 date: Timestamp.fromDate(new Date())
             }
-
 
             const batch = writeBatch(db)
 
@@ -40,11 +44,13 @@ const Checkout = () => {
 
 
             docs.forEach(doc =>{
-                const dataDoc = doc.data()
-                const stockDb = dataDoc.text
+                const dataDoc = doc.data()   
+                const stockDb = dataDoc.stock  
 
                 const productAddedToCart = cart.find(prod => prod.id === doc.id)
+
                 const prodQuantity = productAddedToCart?.quantity
+
 
                 if(stockDb >= prodQuantity){
                     batch.update(doc.ref, {stock: stockDb - prodQuantity})
@@ -53,22 +59,22 @@ const Checkout = () => {
                 }
             })
 
-
             if(outOfStock.length === 0){
                 await batch.commit()
 
                 const orderRef = collection(db, "orders")
-                const orderAdded = await addDoc(orderRef, objOrder)  // generamos la orden
+                const orderAdded = await addDoc(orderRef, objOrder)
 
-                setOrderId(orderAdded.id) //guardamos el ID de la orden en un estado
+                setOrderId(orderAdded.id) 
                 clearCart()
             } else {
-                console.log("Hay productos que estan fuera de stock")
+                showNotification("error", "Hay productos que estan fuera de stock.")
+                console.log("Hay productos que estan fuera de stock.")
             }
 
         } catch(error) {
             console.log(error)
-            showNotification("error", error)
+            showNotification("error", "Hubo un error generando la orden")
 
         } finally {
             setLoading(false)
@@ -82,7 +88,12 @@ const Checkout = () => {
     }
 
     if(orderId){
-        return <h1>El id de su ordern es {orderId} </h1>
+        return (
+            <>
+                <h1>El id de su orden es:  {orderId} </h1>
+                <Link to="/" className={estilos.botones} > Ir al Inicio</Link>
+            </>
+        )
     }
 
     return(

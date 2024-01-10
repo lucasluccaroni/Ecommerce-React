@@ -24,7 +24,6 @@ const ItemDetailContainer = () =>{
         const documentRef = doc(db, "products", productId)
         getDoc(documentRef)
             .then(queryDocumentSnapshot => {
-                console.log(queryDocumentSnapshot)
                 const fields = queryDocumentSnapshot.data()
                 const productAdapted = {id: queryDocumentSnapshot.id , ...fields}
                 setProduct(productAdapted)
@@ -36,19 +35,6 @@ const ItemDetailContainer = () =>{
             .finally(() =>{
                 setLoading(false)
             })
-
-
-        // getProductById(productId)
-        //     .then(response =>{
-        //         setProduct(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //         showNotification("error", "Hubo un error cargando el producto, intente nuevamente.")
-        //     })
-        //     .finally(() =>{
-        //         setLoading(false)
-        //     })
     },[productId])
 
 

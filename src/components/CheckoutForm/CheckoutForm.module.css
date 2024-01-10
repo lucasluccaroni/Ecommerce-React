@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.formStyle{
+    border: solid black;
+    height: 30vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    width: 60vw;
+}
+
+.campos{
+    height: 30px;
+    width: 50vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.botones{
+    height: 40px;
+    font-size: 18px;
+    background-color: lightgrey;
+    border: solid 3px;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 10px;
+    
+}
+.botones:hover {
+    transform: scale(1.05);
+}

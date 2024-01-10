@@ -6,8 +6,6 @@ const CartItem = ({name, price, quantity, id}) =>{
     const {removeItem} = useCart()
     
 
-
-
     return(
         <div className={estilos.contenedor} >
             <h2> Nombre: {name} </h2>

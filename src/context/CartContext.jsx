@@ -43,7 +43,6 @@ export const CartProvider = ({children}) =>{
         })
         return acc
     }
-
     const totalQuantity = getTotalQuantity()
 
 
@@ -56,8 +55,8 @@ export const CartProvider = ({children}) =>{
         })
         return acc
     }
-
     const total = getTotal()
+
 
     //LIMPIAR CARRITO
     const clearCart = () =>{
@@ -75,6 +74,7 @@ export const CartProvider = ({children}) =>{
 }
 
 
+//Custom hook para compartir la notificacion
 export const useCart = () =>{
     return useContext(CartContext)
 }

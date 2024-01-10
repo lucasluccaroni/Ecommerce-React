@@ -1,5 +1,3 @@
-//COMPONENTE DE PRESENTACION
-import { useEffect } from "react"
 import Item from "../Item/Item"
 import estilos from "./ItemList.module.css"
 

@@ -25,7 +25,6 @@ const ItemListContainer = ({greeting}) =>{
     useEffect(() =>{
         setLoading(true)
 
-        //Condicional para que se filtren los productos
         const collectionRef = categoryId
             ? query(collection(db, "products"), where("category", "==", categoryId))
             : collection(db, "products")
@@ -46,21 +45,6 @@ const ItemListContainer = ({greeting}) =>{
             .finally(() =>{
                 setLoading(false)
             })
-
-        // setLoading(true)
-        // const ascynFunction = categoryId ? getProductsByCategory : getProducts
-        // ascynFunction(categoryId)
-        // .then(response =>{
-        //     setProducts(response)
-        //     check(response)
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        //     showNotification("error", "Hubo un error, intente mas tarde.")
-        // })
-        // .finally(() =>{
-        //     setLoading(false)
-        // })
     }, [categoryId] )
 
 

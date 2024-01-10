@@ -1,0 +1,18 @@
+.botones{
+    height: 40px;
+    font-size: 18px;
+    background-color: lightgrey;
+    border: solid 3px;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 10px;
+    
+}
+.botones:hover {
+    transform: scale(1.05);
+}

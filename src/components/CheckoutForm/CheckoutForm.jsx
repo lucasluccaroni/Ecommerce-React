@@ -1,4 +1,5 @@
 import { useState } from "react"
+import estilos from "./CheckoutForm.module.css"
 
 
 const CheckoutForm = ({onConfirm}) =>{
@@ -18,22 +19,22 @@ const CheckoutForm = ({onConfirm}) =>{
 
 
     return(
-        <div>
-            <form onSubmit={handleConfirm}>
-                <label>
-                    Nombre
+        <div className={estilos.container} >
+            <form onSubmit={handleConfirm} className={estilos.formStyle} >
+                <label className={estilos.campos} >
+                    <h3>Nombre:</h3>
                     <input type="text" value={name} onChange={({target}) => setName(target.value)} />
                 </label>
-                <label>
-                    Telefono
+                <label className={estilos.campos} >
+                    <h3>Teléfono:</h3>
                     <input type="number" value={phone} onChange={({target}) => setPhone(target.value)} />
                 </label>
-                <label>
-                    Email
-                    <input type="email" value={email} onChange={({target}) => setEmail(target.value)} />
+                <label className={estilos.campos} >
+                    <h3>Email:</h3>
+                    <input type="email" value={email} onChange={({target}) => setEmail(target.value)}  style={{marginLeft: 20}} />
                 </label>
                 <div>
-                    <button type="submit"> Crear orden </button>
+                    <button type="submit" className={estilos.botones} > Crear orden </button>
                 </div>
             </form>
         </div>
