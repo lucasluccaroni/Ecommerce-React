@@ -35,9 +35,6 @@ const Navbar = () =>{
                         return <Link key={cat.id}  to={`/category/${cat.slug}`} className={estilos.botones} > {cat.name} </Link>
                     })
                 }
-                {/* <Link to={"/category/sistemas-operativos"} className={estilos.botones} > Sistemas Operativos </Link>
-                <Link to= {"/category/programs"} className={estilos.botones} > Programas</Link>
-                <Link to={"/category/cd"} className={estilos.botones} > CD's </Link> */}
                 <CartWidget />
             </section>
         </nav>
