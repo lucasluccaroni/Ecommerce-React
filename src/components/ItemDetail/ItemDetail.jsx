@@ -5,10 +5,8 @@ import { useNotification } from "../../notification/NotificationService"
 import { Link } from "react-router-dom"
 
 const ItemDetail = ({id, name, category, img, price, description, stock}) =>{
-
     const {addItem, isInCart} = useCart();
     const {showNotification} = useNotification()
-
 
 
     const handleOnAdd = (quantity) => {

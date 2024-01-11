@@ -11,13 +11,12 @@ export const CartContext = createContext({
 
 export const CartProvider = ({children}) =>{
     const {showNotification} = useNotification()
-
-    
     const [cart, setCart] = useState([])
     console.log(cart)
 
-    const addItem = (productToAdd) => {
 
+    const addItem = (productToAdd) => {
+        
         if(!isInCart(productToAdd.id)) {
             setCart(prev => [...prev , productToAdd])
         }else(

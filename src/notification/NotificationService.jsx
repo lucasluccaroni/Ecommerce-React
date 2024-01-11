@@ -5,7 +5,6 @@ import { createContext, useState, useContext, useEffect } from "react"
 const Notification = ({notificationData}) =>{
     const [notificationStyle, setNotificationStyle] = useState(estilos.notificationSuccess)
 
-
     useEffect(()=>{
         const notificationColor = ()=>{
             if(notificationData.type == "error"){

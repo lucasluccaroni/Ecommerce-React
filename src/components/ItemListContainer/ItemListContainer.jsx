@@ -3,15 +3,14 @@ import ItemList from "../ItemList/ItemList"
 import { useParams } from "react-router-dom"
 import estilos from "./ItemListContainer.module.css"
 import { useNotification } from "../../notification/NotificationService"
-import { getDocs, collection, query, where } from "firebase/firestore"
-import { db } from "../../services/firebase/firebaseConfig"
+import { getProducts } from "../../services/firebase/firestore/products"
 
 const ItemListContainer = ({greeting}) =>{
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const {showNotification} = useNotification()
-
     const {categoryId} = useParams()
+
 
     const check = (a) =>{
         setTimeout(()=>{
@@ -25,18 +24,10 @@ const ItemListContainer = ({greeting}) =>{
     useEffect(() =>{
         setLoading(true)
 
-        const collectionRef = categoryId
-            ? query(collection(db, "products"), where("category", "==", categoryId))
-            : collection(db, "products")
-
-        getDocs(collectionRef)
-            .then(querySnapshot =>{
-                const productsAdapted = querySnapshot.docs.map(doc => {
-                    const fields = doc.data()   
-                    return {id: doc.id, ...fields } 
-                })
-                setProducts(productsAdapted)
-                check(productsAdapted)
+        getProducts(categoryId)
+            .then(products =>{
+                setProducts(products)
+                check(products)
             })
             .catch(error => {
                 console.log(error);
