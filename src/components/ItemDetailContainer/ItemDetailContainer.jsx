@@ -5,6 +5,7 @@ import estilos from "./ItemDetailContainer.module.css"
 import { useNotification } from "../../notification/NotificationService"
 import { getDoc, doc } from "firebase/firestore"
 import { db } from "../../services/firebase/firebaseConfig"
+import { createProductAdaptedFromFirestore } from "../../adapters/createProductAdaptedFromFirestore"
 
 
 const ItemDetailContainer = () =>{
@@ -24,8 +25,7 @@ const ItemDetailContainer = () =>{
         const documentRef = doc(db, "products", productId)
         getDoc(documentRef)
             .then(queryDocumentSnapshot => {
-                const fields = queryDocumentSnapshot.data()
-                const productAdapted = {id: queryDocumentSnapshot.id , ...fields}
+                const productAdapted = createProductAdaptedFromFirestore(queryDocumentSnapshot)
                 setProduct(productAdapted)
             })
             .catch(error => {
