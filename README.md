@@ -13,9 +13,13 @@ Link al proyecto con deploy en Vercel :
 Leugo de clonar el repositorio, es necesario instalar las dependencias y hacer correr el servidor.
 
 ```sh
+git clone https://github.com/lucasluccaroni/3era-entrega-proyecto-final.git
+cd 3era-entrega-proyecto-final-react
 npm install
 npm run dev
 ```
+
+`Archivo ".env.example" dentro del repositorio para copiar credenciales de su Firestore y dejar andando la aplicacion y hacer pruebas. (Quitar el .example)`
 
 ## Rutas de la aplicacion
 

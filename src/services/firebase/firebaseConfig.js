@@ -3,12 +3,12 @@ import {getFirestore} from "firebase/firestore"
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDT9mtgBJVFtAIi_20RfT1uSdGQtOxIlj4",
-    authDomain: "ecommerce-proyectofinalreact.firebaseapp.com",
-    projectId: "ecommerce-proyectofinalreact",
-    storageBucket: "ecommerce-proyectofinalreact.appspot.com",
-    messagingSenderId: "220121006667",
-    appId: "1:220121006667:web:525b75dcd18d6e996a83ce"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
 //Referencia al proyecto
