@@ -46,3 +46,4 @@ Se utilizan dependencias de las siguientes librerias:
  * react-router-dom
  * react (predeterminada)
  * react-dom (predeterminada)
+
